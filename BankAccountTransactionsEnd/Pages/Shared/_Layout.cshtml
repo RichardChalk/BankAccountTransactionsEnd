@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/site.css" asp-append-version="true">
-    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-    <title>@ViewData["Title"] - SkysFormsDemo</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>@ViewData["Title"] - Bank Transaction</title>
 </head>
 <body>
     
@@ -36,9 +36,9 @@
                           Personer</a>
                   </li>
                   <li class="sidenav__list-item">
-                      <a href="#">
+                      <a asp-page="/Account/Index">
                           <i class="bx bx-pie-chart-alt-2"></i>
-                          Statistics</a>
+                          Accounts</a>
                   </li>
                   <li class="sidenav__list-item">
                       <a href="#">
@@ -56,7 +56,7 @@
             @RenderBody()
         </main>
         <footer class="footer">
-            <div class="footer__copyright">&copy; 2021 Systementor AB</div>
+            <div class="footer__copyright">&copy; 2022 Systementor AB</div>
             <div class="footer__signature">Made with love by Stefan Holmberg</div>
         </footer>      
     </div>
