@@ -1,6 +1,7 @@
 using BankAccountTransactionsEnd.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.ComponentModel.DataAnnotations;
 
 namespace BankAccountTransactionsEnd.Pages.Account
 {
@@ -13,8 +14,14 @@ namespace BankAccountTransactionsEnd.Pages.Account
         {
             _accountService = accountService;
         }
+        
+        [Range(100,10000)]
         public decimal Amount { get; set; }
         public DateTime DepositDate { get; set; }
+
+        [Required(ErrorMessage = "You forgot to write a comment!")]
+        [MinLength(5, ErrorMessage = "Comments must be at least 5 characters long")]
+        [MaxLength(250, ErrorMessage = "OK, thats just too many words")]
         public string Comment { get; set; }
         
         public void OnGet(int accountId)
@@ -24,10 +31,18 @@ namespace BankAccountTransactionsEnd.Pages.Account
 
         public IActionResult OnPost(int accountId)
         {
-            var accountDb = _accountService.GetAccount(accountId);
-            accountDb.Balance += Amount;
-            _accountService.Update(accountDb);
-            return RedirectToPage("Index");
+            if (DepositDate < DateTime.Now)
+            {
+                ModelState.AddModelError("DepositDate", "Cannot Deposit money in the past!");
+            }
+            if (ModelState.IsValid)
+            {
+                var accountDb = _accountService.GetAccount(accountId);
+                accountDb.Balance += Amount;
+                _accountService.Update(accountDb);
+                return RedirectToPage("Index");
+            }
+            return Page();
         }
     }
 }
