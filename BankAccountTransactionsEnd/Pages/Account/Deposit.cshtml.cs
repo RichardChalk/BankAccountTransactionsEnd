@@ -26,7 +26,7 @@ namespace BankAccountTransactionsEnd.Pages.Account
         
         public void OnGet(int accountId)
         {
-            DepositDate = DateTime.Now;
+            DepositDate = DateTime.Now.AddHours(1);
         }
 
         public IActionResult OnPost(int accountId)
