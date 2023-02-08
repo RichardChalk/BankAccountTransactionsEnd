@@ -22,7 +22,7 @@ public class Person
 
     public decimal Salary { get; set; }
 
-    public int CarCount { get; set; } //Krysta fram ett int-usecase
+    public int Age { get; set; } //Krysta fram ett int-usecase
     [StringLength(50)]
     public string City { get; set; }
     [StringLength(150)]
